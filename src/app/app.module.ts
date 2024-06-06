@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RecorderListComponent } from './componentes/recorder-list/recorder-list.component';
 import { RecorderItemComponent } from './componentes/recorder-item/recorder-item.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { RecorderItemComponent } from './componentes/recorder-item/recorder-item
     RecorderItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

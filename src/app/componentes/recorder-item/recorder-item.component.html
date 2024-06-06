@@ -1,1 +1,12 @@
-<p>recorder-item works!</p>
+<section class="audio">
+    <p class="num">{{ index + 1 }}</p>
+    <div class="content-container">
+      <p>recording {{ index + 1 }}</p>
+      <p>{{ audio.duration }}</p>
+    </div>
+    
+    <div class="custom-controls">
+      <audio #audioControl [src]="audio.url" controls></audio>
+      <fa-icon [icon]="audio.icon" (click)="play(audioControl, index)"></fa-icon>
+    </div>
+</section>

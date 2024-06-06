@@ -5,7 +5,7 @@
     align-items: center;
     height: 100vh;
   }
-.start-btn{
+  .start-btn{
     width: 150px;
     height: 150px;
     color: white;
@@ -14,4 +14,12 @@
     text-transform: capitalize;
     font-weight: 500;
     font-size: 25px;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  .audios-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 14px;
   }

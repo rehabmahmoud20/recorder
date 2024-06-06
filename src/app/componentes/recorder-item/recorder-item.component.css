@@ -1,0 +1,26 @@
+.audio {
+  display: flex;
+  gap: 17px;
+}
+audio {
+  display: none;
+}
+.audio .num {
+  width: 22px;
+  height: 22px;
+  background: black;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-container {
+  width: 250px;
+  margin-right: 50px;
+}
+.content-container p:first-of-type {
+  color: black;
+  text-transform: capitalize;
+}

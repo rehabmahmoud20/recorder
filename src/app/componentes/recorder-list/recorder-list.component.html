@@ -1,4 +1,14 @@
 <div class="record-wrapper">
-    <button class="start-btn">start</button>
-  
+  <button class="start-btn" (click)="startRecording()">{{ content }}</button>
+  <p>click to {{ defaultText }} recording</p>
+
+  <div class="audios-container" *ngIf="audioUrls.length > 0">
+    <!-- <div class="audio"> -->
+      <app-recorder-item
+        *ngFor="let item of audioUrls; let i = index"
+        [audio]="item"
+        [index]="i"
+      ></app-recorder-item>
+    <!-- </div> -->
   </div>
+</div>
