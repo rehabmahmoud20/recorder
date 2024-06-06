@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./recorder-list.component.css']
 })
 export class RecorderListComponent {
-
+  // content: string = 'record';
 }
