@@ -7,6 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { Audio } from 'src/app/interfaces/audio';
 
 @Component({
   selector: 'app-recorder-item',
@@ -24,9 +25,9 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 })
 export class RecorderItemComponent {
   constructor(private cdr: ChangeDetectorRef) {}
-  @Input() audio: any;
+  @Input() audio: Audio;
   @Input() index: number = 0;
-  @Input() audUrl: any;
+
   @Output() audioStateChange = new EventEmitter<any>();
 
   isPlaying: boolean = false;
