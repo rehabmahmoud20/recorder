@@ -1,10 +1,11 @@
-import { Component,ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faPause } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-recorder-list',
   templateUrl: './recorder-list.component.html',
-  styleUrls: ['./recorder-list.component.css']
+  styleUrls: ['./recorder-list.component.css'],
 })
 export class RecorderListComponent {
   constructor(private cdr: ChangeDetectorRef) {}
@@ -16,12 +17,9 @@ export class RecorderListComponent {
   startRecord: boolean = false;
   content: string = 'record';
 
- 
-
   defaultText: string = 'start';
   startRecording(): void {
     this.startRecord = !this.startRecord;
-
     if (this.startRecord) {
       this.content = 'stop';
       this.defaultText = 'stop';
@@ -34,7 +32,7 @@ export class RecorderListComponent {
       this.stopRecording();
     }
   }
-   getAudioDuration(audioUrl: string): Promise<number> {
+  getAudioDuration(audioUrl: string): Promise<number> {
     return new Promise((resolve, reject) => {
       const audio = new Audio(audioUrl);
       audio.addEventListener('loadedmetadata', () => {
@@ -65,11 +63,9 @@ export class RecorderListComponent {
 
         this.mediaRecorder.ondataavailable = (event: any) => {
           this.chunks.push(event.data);
-         
         };
 
         this.mediaRecorder.onstop = () => {
-       
           const blob = new Blob(this.chunks, {
             type: 'audio/ogg; codecs=opus',
           });
@@ -81,8 +77,8 @@ export class RecorderListComponent {
               duration: this.formatDuration(duration),
               icon: faPlay,
             });
-            this.cdr.detectChanges(); 
-         
+
+            this.cdr.detectChanges();
           });
 
           this.chunks = [];
@@ -92,7 +88,7 @@ export class RecorderListComponent {
         console.error('Error accessing audio stream:', error);
       });
   }
-   formatDuration(duration: number): string {
+  formatDuration(duration: number): string {
     const minutes = Math.floor(duration / 60);
     const seconds = Math.floor(duration % 60);
     return `${minutes} minute ${seconds} second`;
@@ -103,5 +99,12 @@ export class RecorderListComponent {
       this.isRecording = false;
     }
   }
- 
+  updateAudioState(event: { index: number; isPlaying: boolean }): void {
+    this.audioUrls.map((audio, i) => {
+      i === event.index && event.isPlaying
+        ? (audio.icon = faPause)
+        : (audio.icon = faPlay);
+      this.cdr.detectChanges();
+    });
+  }
 }

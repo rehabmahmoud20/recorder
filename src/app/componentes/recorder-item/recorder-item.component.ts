@@ -1,8 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { faPause } from '@fortawesome/free-solid-svg-icons';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
-import { AudioUrlsService } from './services/audio-urls.service';
-
 
 @Component({
   selector: 'app-recorder-item',
@@ -10,26 +13,27 @@ import { AudioUrlsService } from './services/audio-urls.service';
   styleUrls: ['./recorder-item.component.css'],
 })
 export class RecorderItemComponent {
-  constructor(private AudioUrlsService: AudioUrlsService) {}
+  constructor(private cdr: ChangeDetectorRef) {}
   @Input() audio: any;
   @Input() index: number = 0;
+  @Input() audUrl: any;
+  @Output() audioStateChange = new EventEmitter<any>();
+
   isPlaying: boolean = false;
+
   play(audio: HTMLAudioElement, i: number): void {
+    // debugger;
+
     this.isPlaying = !this.isPlaying;
-    this.AudioUrlsService.data$.subscribe((newData: any) => {
-      // this.data = newData;
-      console.log(newData)
-    });
-    // this.audioUrls.map((item, index) =>
-    //   i === index && this.isPlaying
-    //     ? (item.icon = faPause)
-    //     : (item.icon = faPlay)
-    // );
+    console.log(this.isPlaying);
+    this.audioStateChange.emit({ index: i, isPlaying: this.isPlaying });
 
     if (this.isPlaying) {
       audio.play();
+
       audio.onended = () => {
-        // this.audioUrls[i].icon = faPlay;
+        this.audio.icon = faPlay;
+        this.cdr.detectChanges();
       };
     } else {
       audio.pause();

@@ -3,12 +3,13 @@
   <p>click to {{ defaultText }} recording</p>
 
   <div class="audios-container" *ngIf="audioUrls.length > 0">
-    <!-- <div class="audio"> -->
+   
       <app-recorder-item
         *ngFor="let item of audioUrls; let i = index"
         [audio]="item"
         [index]="i"
+        (audioStateChange)="updateAudioState($event)"
       ></app-recorder-item>
-    <!-- </div> -->
+   
   </div>
 </div>
