@@ -5,16 +5,19 @@ import { AppComponent } from './app.component';
 import { RecorderListComponent } from './componentes/recorder-list/recorder-list.component';
 import { RecorderItemComponent } from './componentes/recorder-item/recorder-item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecorderListComponent,
-    RecorderItemComponent
+    RecorderItemComponent,
+    
   ],
   imports: [
     BrowserModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

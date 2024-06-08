@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectorRef,
   Component,
@@ -11,6 +12,15 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-recorder-item',
   templateUrl: './recorder-item.component.html',
   styleUrls: ['./recorder-item.component.css'],
+    animations: [
+    trigger('audioAnimation', [
+      state('void', style({ transform: 'translateX(-50%)' })),
+      transition(':enter', [
+        animate('1s ease-out', style({ transform: 'translateX(0)' }))
+      ])
+    ])
+   
+  ]
 })
 export class RecorderItemComponent {
   constructor(private cdr: ChangeDetectorRef) {}

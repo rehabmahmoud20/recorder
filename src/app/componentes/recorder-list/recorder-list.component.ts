@@ -104,7 +104,8 @@ export class RecorderListComponent {
       i === event.index && event.isPlaying
         ? (audio.icon = faPause)
         : (audio.icon = faPlay);
-      this.cdr.detectChanges();
     });
+    this.cdr.detectChanges();
+
   }
 }
